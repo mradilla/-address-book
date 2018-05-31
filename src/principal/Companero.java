@@ -37,7 +37,7 @@ public class Companero extends Persona {
 
     @Override
     public String toString() {
-        return super.toString() + " <br>&emsp<b>Empresa:</b> " + empresa + "<br>&emsp<b>Area:</b> " + area + "<br>&emsp<b>Rubro de la empresa: </b>" + rubroEmpresa;
+        return super.toString() + " <br>&emsp &emsp &emsp<b>Empresa:</b> " + empresa + "<br>&emsp &emsp &emsp<b>Area:</b> " + area + "<br>&emsp &emsp &emsp<b>Rubro de la empresa: </b>" + rubroEmpresa;
     }
 
 }

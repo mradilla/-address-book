@@ -1,14 +1,10 @@
 package principal;
 
-import com.mysql.jdbc.MySQLConnection;
 import java.awt.Color;
 import java.awt.Component;
-import java.awt.Font;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JComboBox;
 import javax.swing.JComponent;
 import javax.swing.JOptionPane;
@@ -38,7 +34,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        formulario = new javax.swing.JDialog();
+        formularioNuevo = new javax.swing.JDialog();
         jPanel5 = new javax.swing.JPanel();
         panelFormulario = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
@@ -64,6 +60,32 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         btnGuardarNuevo = new javax.swing.JButton();
         btnCancelarNuevo = new javax.swing.JButton();
+        formularioEditar = new javax.swing.JDialog();
+        jPanel6 = new javax.swing.JPanel();
+        panelFormularioEditar = new javax.swing.JPanel();
+        jLabel9 = new javax.swing.JLabel();
+        txtNombreEditar = new javax.swing.JTextField();
+        jLabel10 = new javax.swing.JLabel();
+        txtApellidoPaternoEditar = new javax.swing.JTextField();
+        jLabel11 = new javax.swing.JLabel();
+        txtApellidoMaternoEditar = new javax.swing.JTextField();
+        jLabel12 = new javax.swing.JLabel();
+        txtTelefonoEditar = new javax.swing.JTextField();
+        jLabel13 = new javax.swing.JLabel();
+        txtDomicilioEditar = new javax.swing.JTextField();
+        jLabel14 = new javax.swing.JLabel();
+        comboRelacionEditar = new javax.swing.JComboBox<>();
+        lblTipoEditar = new javax.swing.JLabel();
+        comboTipoEditar = new javax.swing.JComboBox<>();
+        lblEmpresaEditar = new javax.swing.JLabel();
+        txtEmpresaEditar = new javax.swing.JTextField();
+        lblAreaEditar = new javax.swing.JLabel();
+        txtAreaEditar = new javax.swing.JTextField();
+        txtRubroEditar = new javax.swing.JTextField();
+        lblRubroEditar = new javax.swing.JLabel();
+        jLabel15 = new javax.swing.JLabel();
+        btnActualizar = new javax.swing.JButton();
+        btnCancelarEditar = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
@@ -84,8 +106,9 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jScrollPane3 = new javax.swing.JScrollPane();
         panelInfo = new javax.swing.JTextPane();
 
-        formulario.setBounds(new java.awt.Rectangle(0, 0, 580, 520));
-        formulario.setModal(true);
+        formularioNuevo.setBounds(new java.awt.Rectangle(0, 0, 580, 520));
+        formularioNuevo.setModal(true);
+        formularioNuevo.setResizable(false);
 
         jPanel5.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -308,20 +331,262 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        javax.swing.GroupLayout formularioLayout = new javax.swing.GroupLayout(formulario.getContentPane());
-        formulario.getContentPane().setLayout(formularioLayout);
-        formularioLayout.setHorizontalGroup(
-            formularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout formularioNuevoLayout = new javax.swing.GroupLayout(formularioNuevo.getContentPane());
+        formularioNuevo.getContentPane().setLayout(formularioNuevoLayout);
+        formularioNuevoLayout.setHorizontalGroup(
+            formularioNuevoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
-        formularioLayout.setVerticalGroup(
-            formularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        formularioNuevoLayout.setVerticalGroup(
+            formularioNuevoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+
+        formularioEditar.setBounds(new java.awt.Rectangle(0, 0, 580, 520));
+        formularioEditar.setModal(true);
+        formularioEditar.setResizable(false);
+
+        jPanel6.setBackground(new java.awt.Color(255, 255, 255));
+
+        panelFormularioEditar.setBackground(new java.awt.Color(255, 255, 255));
+        panelFormularioEditar.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Editar registro", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 18))); // NOI18N
+
+        jLabel9.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel9.setText("Nombre: *");
+
+        txtNombreEditar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+
+        jLabel10.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel10.setText("Apellido Paterno: *");
+
+        txtApellidoPaternoEditar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+
+        jLabel11.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel11.setText("Apellido Materno: *");
+
+        txtApellidoMaternoEditar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+
+        jLabel12.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel12.setText("Teléfono: *");
+
+        txtTelefonoEditar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+
+        jLabel13.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel13.setText("Domicilio:");
+
+        txtDomicilioEditar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        txtDomicilioEditar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtDomicilioEditarActionPerformed(evt);
+            }
+        });
+
+        jLabel14.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel14.setText("Relación:");
+
+        comboRelacionEditar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        comboRelacionEditar.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Familiar / Amigo", "Compañero de trabajo" }));
+        comboRelacionEditar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comboRelacionEditarActionPerformed(evt);
+            }
+        });
+
+        lblTipoEditar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        lblTipoEditar.setText("Tipo:");
+
+        comboTipoEditar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        comboTipoEditar.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Familiar", "Amigo" }));
+
+        lblEmpresaEditar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        lblEmpresaEditar.setText("Empresa:");
+        lblEmpresaEditar.setEnabled(false);
+
+        txtEmpresaEditar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        txtEmpresaEditar.setEnabled(false);
+
+        lblAreaEditar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        lblAreaEditar.setText("Área:");
+        lblAreaEditar.setEnabled(false);
+
+        txtAreaEditar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        txtAreaEditar.setEnabled(false);
+
+        txtRubroEditar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        txtRubroEditar.setEnabled(false);
+
+        lblRubroEditar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        lblRubroEditar.setText("Rubro de la empresa: *");
+        lblRubroEditar.setEnabled(false);
+
+        jLabel15.setText("* Campos obligatorios");
+
+        javax.swing.GroupLayout panelFormularioEditarLayout = new javax.swing.GroupLayout(panelFormularioEditar);
+        panelFormularioEditar.setLayout(panelFormularioEditarLayout);
+        panelFormularioEditarLayout.setHorizontalGroup(
+            panelFormularioEditarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelFormularioEditarLayout.createSequentialGroup()
+                .addGap(19, 19, 19)
+                .addGroup(panelFormularioEditarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panelFormularioEditarLayout.createSequentialGroup()
+                        .addComponent(comboRelacionEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(comboTipoEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 254, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtEmpresaEditar)
+                    .addGroup(panelFormularioEditarLayout.createSequentialGroup()
+                        .addGroup(panelFormularioEditarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblAreaEditar)
+                            .addComponent(txtAreaEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 16, Short.MAX_VALUE)
+                        .addGroup(panelFormularioEditarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtRubroEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 246, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblRubroEditar)))
+                    .addGroup(panelFormularioEditarLayout.createSequentialGroup()
+                        .addGroup(panelFormularioEditarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(panelFormularioEditarLayout.createSequentialGroup()
+                                .addGroup(panelFormularioEditarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(panelFormularioEditarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                        .addComponent(txtTelefonoEditar, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 157, Short.MAX_VALUE)
+                                        .addComponent(jLabel9, javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(txtNombreEditar, javax.swing.GroupLayout.Alignment.LEADING))
+                                    .addComponent(jLabel12)
+                                    .addComponent(jLabel14))
+                                .addGroup(panelFormularioEditarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(panelFormularioEditarLayout.createSequentialGroup()
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addGroup(panelFormularioEditarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addGroup(panelFormularioEditarLayout.createSequentialGroup()
+                                                .addGroup(panelFormularioEditarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                    .addComponent(jLabel10)
+                                                    .addComponent(txtApellidoPaternoEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                                .addGroup(panelFormularioEditarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                    .addComponent(jLabel11)
+                                                    .addComponent(txtApellidoMaternoEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                            .addComponent(jLabel13)
+                                            .addComponent(txtDomicilioEditar)
+                                            .addComponent(jLabel15, javax.swing.GroupLayout.Alignment.TRAILING)))
+                                    .addGroup(panelFormularioEditarLayout.createSequentialGroup()
+                                        .addGap(81, 81, 81)
+                                        .addComponent(lblTipoEditar))))
+                            .addComponent(lblEmpresaEditar))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap(20, Short.MAX_VALUE))
+        );
+        panelFormularioEditarLayout.setVerticalGroup(
+            panelFormularioEditarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelFormularioEditarLayout.createSequentialGroup()
+                .addGap(0, 0, 0)
+                .addComponent(jLabel15)
+                .addGap(18, 18, 18)
+                .addGroup(panelFormularioEditarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(panelFormularioEditarLayout.createSequentialGroup()
+                        .addComponent(jLabel9)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtNombreEditar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(panelFormularioEditarLayout.createSequentialGroup()
+                        .addComponent(jLabel10)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtApellidoPaternoEditar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(panelFormularioEditarLayout.createSequentialGroup()
+                        .addComponent(jLabel11)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtApellidoMaternoEditar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(18, 18, 18)
+                .addGroup(panelFormularioEditarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(panelFormularioEditarLayout.createSequentialGroup()
+                        .addComponent(jLabel12)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtTelefonoEditar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(panelFormularioEditarLayout.createSequentialGroup()
+                        .addComponent(jLabel13)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtDomicilioEditar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(panelFormularioEditarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(panelFormularioEditarLayout.createSequentialGroup()
+                        .addGroup(panelFormularioEditarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel14)
+                            .addComponent(lblTipoEditar))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(comboRelacionEditar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(comboTipoEditar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(panelFormularioEditarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(panelFormularioEditarLayout.createSequentialGroup()
+                        .addComponent(lblEmpresaEditar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtEmpresaEditar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(panelFormularioEditarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lblAreaEditar)
+                            .addComponent(lblRubroEditar))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtAreaEditar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtRubroEditar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(28, Short.MAX_VALUE))
+        );
+
+        btnActualizar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnActualizar.setForeground(new java.awt.Color(0, 51, 0));
+        btnActualizar.setText("Actualizar");
+        btnActualizar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnActualizarActionPerformed(evt);
+            }
+        });
+
+        btnCancelarEditar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnCancelarEditar.setForeground(new java.awt.Color(102, 0, 0));
+        btnCancelarEditar.setText("Cancelar");
+        btnCancelarEditar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelarEditarActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
+        jPanel6.setLayout(jPanel6Layout);
+        jPanel6Layout.setHorizontalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel6Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(panelFormularioEditar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnActualizar)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnCancelarEditar)
+                .addGap(40, 40, 40))
+        );
+        jPanel6Layout.setVerticalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel6Layout.createSequentialGroup()
+                .addGap(22, 22, 22)
+                .addComponent(panelFormularioEditar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnActualizar)
+                    .addComponent(btnCancelarEditar))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        javax.swing.GroupLayout formularioEditarLayout = new javax.swing.GroupLayout(formularioEditar.getContentPane());
+        formularioEditar.getContentPane().setLayout(formularioEditarLayout);
+        formularioEditarLayout.setHorizontalGroup(
+            formularioEditarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        formularioEditarLayout.setVerticalGroup(
+            formularioEditarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Libreta de direcciones");
         setBackground(new java.awt.Color(255, 255, 255));
+        setResizable(false);
 
         jPanel1.setBackground(new java.awt.Color(204, 204, 204));
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
@@ -397,7 +662,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Nombre", "Apellido Paterno", "Apellido Materno", "Teléfono"
+                "Nombre", "Apellido paterno", "Apellito materno", "Teléfono"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -418,6 +683,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(tablacontactos);
 
+        jPanel4.setBackground(new java.awt.Color(0, 0, 51));
         jPanel4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
 
         lblNuevo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/new.png"))); // NOI18N
@@ -485,8 +751,8 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(49, 49, 49))
+                .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
             .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel4Layout.createSequentialGroup()
                     .addGap(116, 116, 116)
@@ -515,6 +781,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         );
 
         panelInfo.setEditable(false);
+        panelInfo.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jScrollPane3.setViewportView(panelInfo);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -600,13 +867,37 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_tablacontactosMousePressed
 
     private void lblNuevoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblNuevoMouseClicked
-        formulario.setLocationRelativeTo(null);
-        formulario.setVisible(true);
+        formularioNuevo.setLocationRelativeTo(null);
+        formularioNuevo.setVisible(true);
     }//GEN-LAST:event_lblNuevoMouseClicked
 
     private void lblEditarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblEditarMouseClicked
         if (lblEditar.isEnabled()) {
             System.out.println("Editando");
+            Persona p = personas.get(tablacontactos.getSelectedRow());
+            txtNombreEditar.setText(p.getNombre());
+            txtApellidoPaternoEditar.setText(p.getApellidoPaterno());
+            txtApellidoMaternoEditar.setText(p.getApellidoMaterno());
+            txtTelefonoEditar.setText(p.getTelefono());
+            txtDomicilioEditar.setText(p.getDomicilio());
+
+            if (p instanceof Familiar) {
+                comboRelacionEditar.setSelectedIndex(0);
+                if (((Familiar) p).getTipo().equals("Familiar")) {
+                    comboTipoEditar.setSelectedIndex(0);
+                } else {
+                    comboTipoEditar.setSelectedIndex(1);
+                }
+            } else {
+                comboRelacionEditar.setSelectedIndex(1);
+                txtEmpresaEditar.setText(((Companero) p).getEmpresa());
+                txtAreaEditar.setText(((Companero) p).getArea());
+                txtRubroEditar.setText(((Companero) p).getRubroEmpresa());
+            }
+
+            formularioEditar.setLocationRelativeTo(null);
+            formularioEditar.setVisible(true);
+
         }
     }//GEN-LAST:event_lblEditarMouseClicked
 
@@ -643,13 +934,14 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         System.out.println(query);
         ConexionMySQL.insertar(query);
         JOptionPane.showMessageDialog(null, "Registro guardado!");
-        formulario.setVisible(false);
+        formularioNuevo.setVisible(false);
         limpiarFormulario(panelFormulario);
         obtenerPersonas(ConexionMySQL.consultar(consulta));
+        panelInfo.setText("");
     }//GEN-LAST:event_btnGuardarNuevoActionPerformed
 
     private void btnCancelarNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarNuevoActionPerformed
-        formulario.setVisible(false);
+        formularioNuevo.setVisible(false);
         limpiarFormulario(panelFormulario);
     }//GEN-LAST:event_btnCancelarNuevoActionPerformed
 
@@ -669,6 +961,60 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         txtRubroNuevo.setEnabled(!flag);
         txtAreaNuevo.setEnabled(!flag);
     }//GEN-LAST:event_comboRelacionActionPerformed
+
+    private void comboRelacionEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboRelacionEditarActionPerformed
+
+        boolean flag = false;
+        if (comboRelacionEditar.getSelectedIndex() == 0) {
+            flag = true;
+            txtRubroEditar.setText("");
+            txtAreaEditar.setText("");
+            txtEmpresaEditar.setText("");
+        }
+        comboTipoEditar.setEnabled(flag);
+
+        lblTipoEditar.setEnabled(flag);
+
+        lblEmpresaEditar.setEnabled(!flag);
+        lblRubroEditar.setEnabled(!flag);
+        lblAreaEditar.setEnabled(!flag);
+
+        txtEmpresaEditar.setEnabled(!flag);
+        txtRubroEditar.setEnabled(!flag);
+        txtAreaEditar.setEnabled(!flag);
+    }//GEN-LAST:event_comboRelacionEditarActionPerformed
+
+    private void btnActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarActionPerformed
+        Persona p;
+        if (comboRelacionEditar.getSelectedIndex() == 0) {
+            p = new Familiar(personas.get(tablacontactos.getSelectedRow()).getIdPersona(), txtNombreEditar.getText(), txtApellidoPaternoEditar.getText(), txtApellidoMaternoEditar.getText(), txtTelefonoEditar.getText(), txtDomicilioEditar.getText(), comboTipoEditar.getSelectedItem().toString());
+            ConexionMySQL.editar("update persona set nombre = '" + p.getNombre() + "', apellidoPaterno='" + p.getApellidoPaterno() + "', apellidoMaterno='" + p.getApellidoMaterno() + "', telefono='" + p.getTelefono() + "', domicilio = '" + p.getDomicilio() + "' where idPersona = " + p.getIdPersona());
+            ConexionMySQL.eliminar("delete from familiar where idFamiliar = " + p.getIdPersona());
+            ConexionMySQL.eliminar("delete from companero where idCompanero = " + p.getIdPersona());
+            ConexionMySQL.insertar("insert into familiar values(" + p.getIdPersona() + ", '" + ((Familiar) p).getTipo() + "')");
+        } else {
+            p = new Companero(personas.get(tablacontactos.getSelectedRow()).getIdPersona(), txtNombreEditar.getText(), txtApellidoPaternoEditar.getText(), txtApellidoMaternoEditar.getText(), txtTelefonoEditar.getText(), txtDomicilioEditar.getText(), txtEmpresaEditar.getText(), txtAreaEditar.getText(), txtRubroEditar.getText());
+            ConexionMySQL.editar("update persona set nombre = '" + p.getNombre() + "', apellidoPaterno='" + p.getApellidoPaterno() + "', apellidoMaterno='" + p.getApellidoMaterno() + "', telefono='" + p.getTelefono() + "', domicilio = '" + p.getDomicilio() + "' where idPersona = " + p.getIdPersona());
+            ConexionMySQL.eliminar("delete from familiar where idFamiliar = " + p.getIdPersona());
+            ConexionMySQL.eliminar("delete from companero where idCompanero = " + p.getIdPersona());
+            ConexionMySQL.insertar("insert into companero values(" + p.getIdPersona() + ", '" + ((Companero) p).getEmpresa() + "', '" + ((Companero) p).getArea() + "', '" + ((Companero) p).getRubroEmpresa() + "')");
+        }
+        JOptionPane.showMessageDialog(null, "Registro actualizado!");
+        limpiarFormulario(panelFormularioEditar);
+        formularioEditar.setVisible(false);
+        obtenerPersonas(ConexionMySQL.consultar(consulta));
+        panelInfo.setText("");
+
+    }//GEN-LAST:event_btnActualizarActionPerformed
+
+    private void btnCancelarEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarEditarActionPerformed
+        formularioEditar.setVisible(false);
+        limpiarFormulario(panelFormularioEditar);
+    }//GEN-LAST:event_btnCancelarEditarActionPerformed
+
+    private void txtDomicilioEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDomicilioEditarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtDomicilioEditarActionPerformed
 
     public static void main(String args[]) {
 
@@ -699,12 +1045,23 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnActualizar;
+    private javax.swing.JButton btnCancelarEditar;
     private javax.swing.JButton btnCancelarNuevo;
     private javax.swing.JButton btnGuardarNuevo;
     private javax.swing.JComboBox<String> comboRelacion;
+    private javax.swing.JComboBox<String> comboRelacionEditar;
+    private javax.swing.JComboBox<String> comboTipoEditar;
     private javax.swing.JComboBox<String> comboTipoNuevo;
-    private javax.swing.JDialog formulario;
+    private javax.swing.JDialog formularioEditar;
+    private javax.swing.JDialog formularioNuevo;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -712,37 +1069,52 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
+    private javax.swing.JPanel jPanel6;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
     private javax.swing.JLabel lblArea;
+    private javax.swing.JLabel lblAreaEditar;
     private javax.swing.JLabel lblEditar;
     private javax.swing.JLabel lblEliminar;
     private javax.swing.JLabel lblEmpresa;
+    private javax.swing.JLabel lblEmpresaEditar;
     private javax.swing.JLabel lblFamilia;
     private javax.swing.JLabel lblNuevo;
     private javax.swing.JLabel lblRubro;
+    private javax.swing.JLabel lblRubroEditar;
     private javax.swing.JLabel lblTipo;
+    private javax.swing.JLabel lblTipoEditar;
     private javax.swing.JLabel lblTodos;
     private javax.swing.JLabel lblTrabajo;
     private javax.swing.JPanel panelFormulario;
+    private javax.swing.JPanel panelFormularioEditar;
     private javax.swing.JTextPane panelInfo;
     private javax.swing.JTable tablacontactos;
+    private javax.swing.JTextField txtApellidoMaternoEditar;
     private javax.swing.JTextField txtApellidoMaternoNuevo;
+    private javax.swing.JTextField txtApellidoPaternoEditar;
     private javax.swing.JTextField txtApellidoPaternoNuevo;
+    private javax.swing.JTextField txtAreaEditar;
     private javax.swing.JTextField txtAreaNuevo;
     private javax.swing.JTextField txtBuscar;
+    private javax.swing.JTextField txtDomicilioEditar;
     private javax.swing.JTextField txtDomicilioNuevo;
+    private javax.swing.JTextField txtEmpresaEditar;
     private javax.swing.JTextField txtEmpresaNuevo;
+    private javax.swing.JTextField txtNombreEditar;
     private javax.swing.JTextField txtNombreNuevo;
+    private javax.swing.JTextField txtRubroEditar;
     private javax.swing.JTextField txtRubroNuevo;
+    private javax.swing.JTextField txtTelefonoEditar;
     private javax.swing.JTextField txtTelefonoNuevo;
     // End of variables declaration//GEN-END:variables
 
@@ -774,7 +1146,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             personas = new ArrayList<>();
             while (rs.next()) {
                 personas.add(new Persona(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6)));
-
             }
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
@@ -800,7 +1171,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                 lblTodos.setBackground(Color.lightGray);
                 lblFamilia.setBackground(Color.white);
                 lblTrabajo.setBackground(Color.white);
-                System.out.println("grey");
+
                 break;
             case "familia":
                 lblTodos.setBackground(Color.white);
@@ -820,6 +1191,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         for (Persona p : personas) {
             model.addRow(new Object[]{p.getNombre(), p.getApellidoPaterno(), p.getApellidoMaterno(), p.getTelefono()});
         }
+        panelInfo.setText("");
     }
 
     private void mostrarInfoCompleta(int seleccion) {
@@ -828,12 +1200,11 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             ResultSet rs = ConexionMySQL.consultar("select count(*) from familiar where idFamiliar=" + personas.get(seleccion).getIdPersona());
             rs.next();
             if (rs.getInt(1) > 0) {
-                System.out.println("es familiar");
                 rs = ConexionMySQL.consultar("select * from persona join familiar where idPersona = idFamiliar and idPersona = " + personas.get(seleccion).getIdPersona());
                 rs.next();
                 personas.set(seleccion, new Familiar(rs.getInt("idPersona"), rs.getString("nombre"), rs.getString("apellidoPaterno"), rs.getString("apellidoMaterno"), rs.getString("telefono"), rs.getString("domicilio"), rs.getString("tipo")));
             } else {
-                System.out.println("es del trabajo");
+
                 rs = ConexionMySQL.consultar("select * from persona join companero where idPersona = idCompanero and idPersona = " + personas.get(seleccion).getIdPersona());
                 rs.next();
                 personas.set(seleccion, new Companero(rs.getInt("idPersona"), rs.getString("nombre"), rs.getString("apellidoPaterno"), rs.getString("apellidoMaterno"), rs.getString("telefono"), rs.getString("domicilio"), rs.getString("empresa"), rs.getString("area"), rs.getString("rubroEmpresa")));

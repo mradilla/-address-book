@@ -53,4 +53,12 @@ public class ConexionMySQL {
             System.out.println(ex.getMessage());
         }
     }
+
+    public static void editar(String query) {
+        try {
+            con.prepareStatement(query).executeUpdate();
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+    }
 }

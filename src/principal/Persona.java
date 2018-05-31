@@ -64,9 +64,9 @@ public class Persona {
 
     @Override
     public String toString() {
-        return "<html><b>&emsp<h2>"+ nombre + " " + apellidoPaterno + " " + apellidoMaterno + "</h2></b><br>"
-                + "     &emsp<b>Telefono:</b> " + telefono + " <br>"
-                + "     &emsp<b>Domicilio:</b> " + domicilio;
+        return "<html>&emsp &emsp<b style='font-size: 20px'><u>" + nombre + " " + apellidoPaterno + " " + apellidoMaterno + "</u></b><br><br>"
+                + "<p style='font-size: 15px'>   &emsp &emsp &emsp<b>Telefono:</b> " + telefono + " <br>"
+                + "  &emsp &emsp &emsp<b>Domicilio:</b> " + domicilio;
     }
 
 }
