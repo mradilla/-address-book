@@ -4,7 +4,8 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class ConexionMySQL {
 
@@ -24,7 +25,7 @@ public class ConexionMySQL {
             System.out.println("No se pudo establecer la conexion.");
             ex.printStackTrace();
         }
-      
+
     }
 
     public static ResultSet consultar(String query) {
@@ -34,5 +35,22 @@ public class ConexionMySQL {
             System.out.println("SQL error: " + ex.getMessage());
         }
         return null;
+    }
+
+    public static void eliminar(String query) {
+        try {
+            con.prepareStatement(query).executeUpdate();
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+
+    }
+
+    public static void insertar(String query) {
+        try {
+            con.prepareStatement(query).execute();
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
     }
 }
