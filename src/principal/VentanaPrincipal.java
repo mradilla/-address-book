@@ -1,9 +1,13 @@
 package principal;
 
+import com.mysql.jdbc.MySQLConnection;
 import java.awt.Color;
 import java.awt.Font;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -12,6 +16,7 @@ import javax.swing.table.DefaultTableModel;
  */
 public class VentanaPrincipal extends javax.swing.JFrame {
 
+    ArrayList<Persona> personas;
     String consulta;
 
     public VentanaPrincipal() {
@@ -19,7 +24,9 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         initComponents();
         ConexionMySQL.conectar();
         setLocationRelativeTo(null);
+        aplicarFormatoTabla();
         mostrarContactos("todos");
+
     }
 
     @SuppressWarnings("unchecked")
@@ -35,14 +42,16 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         tablacontactos = new javax.swing.JTable();
         jPanel4 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
+        lblNuevo = new javax.swing.JLabel();
+        lblEditar = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
         jSeparator2 = new javax.swing.JSeparator();
         jSeparator3 = new javax.swing.JSeparator();
         txtBuscar = new javax.swing.JTextField();
-        jLabel8 = new javax.swing.JLabel();
+        lblEliminar = new javax.swing.JLabel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        panelInfo = new javax.swing.JTextPane();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Libreta de direcciones");
@@ -114,11 +123,12 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                 .addContainerGap(330, Short.MAX_VALUE))
         );
 
+        jScrollPane1.setBackground(new java.awt.Color(255, 255, 255));
+
         tablacontactos.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         tablacontactos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {"sjdlsk", "lkhk", "jkh", "kh"},
-                {"kh", "kjhk", "hkj", "hk"}
+
             },
             new String [] {
                 "Nombre", "Apellido Paterno", "Apellido Materno", "Teléfono"
@@ -134,17 +144,34 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         });
         tablacontactos.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         tablacontactos.setGridColor(new java.awt.Color(255, 255, 255));
+        tablacontactos.setSelectionBackground(new java.awt.Color(153, 204, 255));
+        tablacontactos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                tablacontactosMousePressed(evt);
+            }
+        });
         jScrollPane1.setViewportView(tablacontactos);
 
         jPanel4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/new.png"))); // NOI18N
-        jLabel1.setToolTipText("Nuevo");
-        jLabel1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lblNuevo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/new.png"))); // NOI18N
+        lblNuevo.setToolTipText("Nuevo");
+        lblNuevo.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lblNuevo.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblNuevoMouseClicked(evt);
+            }
+        });
 
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/edit.png"))); // NOI18N
-        jLabel2.setToolTipText("Editar");
-        jLabel2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lblEditar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/edit.png"))); // NOI18N
+        lblEditar.setToolTipText("Editar");
+        lblEditar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lblEditar.setEnabled(false);
+        lblEditar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblEditarMouseClicked(evt);
+            }
+        });
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/research.png"))); // NOI18N
         jLabel3.setToolTipText("Eliminar");
@@ -164,9 +191,15 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             }
         });
 
-        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/delete.png"))); // NOI18N
-        jLabel8.setToolTipText("Eliminar");
-        jLabel8.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lblEliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/delete.png"))); // NOI18N
+        lblEliminar.setToolTipText("Eliminar");
+        lblEliminar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lblEliminar.setEnabled(false);
+        lblEliminar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblEliminarMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -176,11 +209,11 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 6, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(2, 2, 2)
-                .addComponent(jLabel1)
+                .addComponent(lblNuevo)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 6, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel2)
+                .addComponent(lblEditar)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -191,7 +224,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel4Layout.createSequentialGroup()
                     .addGap(116, 116, 116)
-                    .addComponent(jLabel8)
+                    .addComponent(lblEliminar)
                     .addContainerGap(455, Short.MAX_VALUE)))
         );
         jPanel4Layout.setVerticalGroup(
@@ -199,8 +232,8 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lblNuevo, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lblEditar, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jSeparator3, javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jSeparator2, javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.LEADING)
@@ -211,9 +244,12 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel4Layout.createSequentialGroup()
                     .addContainerGap()
-                    .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lblEliminar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addContainerGap()))
         );
+
+        panelInfo.setEditable(false);
+        jScrollPane3.setViewportView(panelInfo);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -222,16 +258,23 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 517, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 517, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jScrollPane3)
+                        .addGap(0, 0, 0))))
             .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, 0)
+                        .addComponent(jScrollPane3)))
                 .addGap(0, 0, Short.MAX_VALUE))
         );
 
@@ -272,7 +315,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private void lblTodosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblTodosMouseClicked
 
         mostrarContactos("todos");
-        
+
     }//GEN-LAST:event_lblTodosMouseClicked
 
     private void lblTrabajoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblTrabajoMouseClicked
@@ -282,6 +325,30 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private void lblFamiliaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblFamiliaMouseClicked
         mostrarContactos("familia");
     }//GEN-LAST:event_lblFamiliaMouseClicked
+
+    private void tablacontactosMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablacontactosMousePressed
+
+        lblEditar.setEnabled(true);
+        lblEliminar.setEnabled(true);
+        mostrarInfoCompleta(tablacontactos.getSelectedRow());
+    }//GEN-LAST:event_tablacontactosMousePressed
+
+    private void lblNuevoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblNuevoMouseClicked
+    
+    }//GEN-LAST:event_lblNuevoMouseClicked
+
+    private void lblEditarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblEditarMouseClicked
+        if(lblEditar.isEnabled()){
+                System.out.println("Editando");
+        }
+    }//GEN-LAST:event_lblEditarMouseClicked
+
+    private void lblEliminarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblEliminarMouseClicked
+        if(lblEliminar.isEnabled()){
+            System.out.println("Eliminando");
+            eliminar(tablacontactos.getSelectedRow());
+        }
+    }//GEN-LAST:event_lblEliminarMouseClicked
 
     public static void main(String args[]) {
 
@@ -312,31 +379,34 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
+    private javax.swing.JLabel lblEditar;
+    private javax.swing.JLabel lblEliminar;
     private javax.swing.JLabel lblFamilia;
+    private javax.swing.JLabel lblNuevo;
     private javax.swing.JLabel lblTodos;
     private javax.swing.JLabel lblTrabajo;
+    private javax.swing.JTextPane panelInfo;
     private javax.swing.JTable tablacontactos;
     private javax.swing.JTextField txtBuscar;
     // End of variables declaration//GEN-END:variables
 
     private void aplicarFormatoTabla() {
-        tablacontactos.getTableHeader().setFont(new Font("SansSerif", Font.ITALIC, 12));
+        tablacontactos.getTableHeader().setFont(new java.awt.Font("Segoe UI", 1, 14)); //da formato a la cabecera de la tabla
+
     }
 
     public void mostrarContactos(String categoria) {
-        consulta = "select nombre, apellidoPaterno, apellidoMaterno, telefono from persona";
+        consulta = "select * from persona";
         switch (categoria) {
             case "familia":
                 consulta += " join familiar where idPersona = idFamiliar";
@@ -345,33 +415,37 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                 consulta += " join companero where idPersona = idCompanero";
         }
         System.out.println(consulta);
-        cargarTabla(ConexionMySQL.consultar(consulta));
+        obtenerPersonas(ConexionMySQL.consultar(consulta));
         activarSeccion(categoria);
         txtBuscar.setText("");
+        panelInfo.setText("");
+        lblEditar.setEnabled(false);
+        lblEliminar.setEnabled(false);
     }
 
-    private void cargarTabla(ResultSet rs) {
+    private void obtenerPersonas(ResultSet rs) {
         try {
-            DefaultTableModel model = (DefaultTableModel) tablacontactos.getModel();
-            model.setRowCount(0);
+            personas = new ArrayList<>();
             while (rs.next()) {
-                model.addRow(new Object[]{rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4)});
+                personas.add(new Persona(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6)));
+
             }
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
+        cargarTabla(personas);
     }
 
     private void buscar(String text) {
-        String consultaBusqueda=consulta;
-        if(consulta.contains("where")){
-            consultaBusqueda+=" and ";
-        }else{
-            consultaBusqueda+=" where ";
+        String consultaBusqueda = consulta;
+        if (consulta.contains("where")) {
+            consultaBusqueda += " and ";
+        } else {
+            consultaBusqueda += " where ";
         }
-        consultaBusqueda += " nombre like '%" + text + "%' or apellidoPaterno like '%" + text + "%' or apellidoMaterno like '%" + text + "%'";
+        consultaBusqueda += " (nombre like '%" + text + "%' or apellidoPaterno like '%" + text + "%' or apellidoMaterno like '%" + text + "%')";
         System.out.println(consultaBusqueda);
-        cargarTabla(ConexionMySQL.consultar(consultaBusqueda));
+        obtenerPersonas(ConexionMySQL.consultar(consultaBusqueda));
     }
 
     public void activarSeccion(String categoria) {
@@ -391,8 +465,43 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                 lblTodos.setBackground(Color.white);
                 lblFamilia.setBackground(Color.white);
                 lblTrabajo.setBackground(Color.lightGray);
-
         }
+    }
+
+    private void cargarTabla(ArrayList<Persona> personas) {
+        DefaultTableModel model = (DefaultTableModel) tablacontactos.getModel();
+        model.setRowCount(0);
+        for (Persona p : personas) {
+            model.addRow(new Object[]{p.getNombre(), p.getApellidoPaterno(), p.getApellidoMaterno(), p.getTelefono()});
+        }
+    }
+
+    private void mostrarInfoCompleta(int seleccion) {
+        try {
+            panelInfo.setContentType("text/html");
+            ResultSet rs = ConexionMySQL.consultar("select count(*) from familiar where idFamiliar=" + personas.get(seleccion).getIdPersona());
+            rs.next();
+            if (rs.getInt(1) > 0) {
+                System.out.println("es familiar");
+                rs = ConexionMySQL.consultar("select * from persona join familiar where idPersona = idFamiliar and idPersona = " + personas.get(seleccion).getIdPersona());
+                rs.next();
+                personas.set(seleccion, new Familiar(rs.getInt("idPersona"), rs.getString("nombre"), rs.getString("apellidoPaterno"), rs.getString("apellidoMaterno"), rs.getString("telefono"), rs.getString("domicilio"), rs.getString("tipo")));
+            } else {
+                System.out.println("es del trabajo");
+                rs = ConexionMySQL.consultar("select * from persona join companero where idPersona = idCompanero and idPersona = " + personas.get(seleccion).getIdPersona());
+                rs.next();
+
+                personas.set(seleccion, new Companero(rs.getInt("idPersona"), rs.getString("nombre"), rs.getString("apellidoPaterno"), rs.getString("apellidoMaterno"), rs.getString("telefono"), rs.getString("domicilio"), rs.getString("empresa"), rs.getString("area"), rs.getString("rubroEmpresa")));
+            }
+            panelInfo.setText(personas.get(seleccion).toString());
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+
+    }
+
+    private void eliminar(int selectedRow) {
+    
     }
 
 }

@@ -17,4 +17,9 @@ public class Familiar extends Persona {
         this.tipo = tipo;
     }
 
+    @Override
+    public String toString() {
+        return super.toString() + "<br>&emsp<b>Tipo: </b>" + tipo ;
+    }
+
 }

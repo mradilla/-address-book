@@ -1,6 +1,5 @@
 package principal;
 
-
 public class Persona {
 
     private int idPersona;
@@ -61,6 +60,13 @@ public class Persona {
 
     public void setDomicilio(String domicilio) {
         this.domicilio = domicilio;
+    }
+
+    @Override
+    public String toString() {
+        return "<html><b>&emsp<h2>"+ nombre + " " + apellidoPaterno + " " + apellidoMaterno + "</h2></b><br>"
+                + "     &emsp<b>Telefono:</b> " + telefono + " <br>"
+                + "     &emsp<b>Domicilio:</b> " + domicilio;
     }
 
 }

@@ -35,4 +35,9 @@ public class Companero extends Persona {
         this.rubroEmpresa = rubroEmpresa;
     }
 
+    @Override
+    public String toString() {
+        return super.toString() + " <br>&emsp<b>Empresa:</b> " + empresa + "<br>&emsp<b>Area:</b> " + area + "<br>&emsp<b>Rubro de la empresa: </b>" + rubroEmpresa;
+    }
+
 }
